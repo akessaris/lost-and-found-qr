@@ -1,0 +1,42 @@
+<div class="form-group row">
+  <div class="col-md-6">
+    <h2>Found an Item</h2>
+  </div>
+</div>
+
+{{#if item}}
+<form method="POST" action="/found-item">
+  <h2>Thank you for finding this lost item!</h2>
+  <h2>How would you like to return the item?</h2>
+  <div class="form-group row">
+    <!-- {{#if user}}
+      <label for="pickup" class="col-lg-6 col-form-label">Pickup (login required)
+        <p>A representative will come to your registered address, pick up the found item, and return it to its owner.</p>
+      </label>
+        <div class="col-sm-3">
+            <input type='radio' id="pickup" name="returnMethod" value="pickup" placeholder='Pickup'><br>
+        </div>
+    {{/if}} -->
+    <label for="dropoff" class="col-lg-6 col-form-label">Drop Off
+      <p>You can drop off or mail the item to our designated return location in NYC, and we'll take it from there!<p>
+    </label>
+      <div class="col-md-6">
+          <input type='radio' id="dropoff" name="returnMethod" value="dropoff" placeholder='Drop off'><br>
+      </div>
+  </div>
+
+  <div class="form-group row">
+    <div class="col-sm-2">
+      <input class="btn btn-success" type="submit" value="Submit">
+    </div>
+  </div>
+</form>
+{{else}}
+<h3>Sorry, we don't have that item registered in our system!</h3>
+{{/if}}
+
+<p>
+  **We are but a humble business, so we can only handle drop offs for now.
+  As we scale, we will implement methods of pickup straight from findees homes to
+  the item's rightful owner. We appreciate your cooporation!
+</p>
