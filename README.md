@@ -7,11 +7,11 @@
 * Wei Jie Chua
 
 ## Project Proposal
-Users will register for our service. They will register items they own and care about and our application will create unique codes for them in the form of printable QR codes, which they will stick on their items (e.g. cell phone). Once an item is lost and recovered, its QR code can be scanned and our application will be notified of the event and the recovering party. Our application will act as the trusted third party and coordinate the return of the item. Naturally, in the scope of this class you will not need to implement the real-life process of returning the item to its owner, just the processing of such events.
+Users will register for our service. They will register items they own and care about and our application will create unique codes for them in the form of printable QR codes, which they will stick on their items (e.g. cell phone). Once an item is lost and recovered, its QR code can be scanned and our application will be notified of the event and the recovering party. Our application will act as the trusted third party and coordinate the return of the item. We did not implement the real-life process of returning the item to its owner, just the processing of such events.
 
 ## Running the project locally:
 
-1. Using the command line, clone the repo into the directory of your choise 
+1. Using the command line, clone the repo into the directory of your choise
   * $ git clone https://github.com/akessaris/lost-and-found.git
 2. Install the required modules once in the cloned directory
   * $ npm install
@@ -29,6 +29,8 @@ Users will register for our service. They will register items they own and care 
   * In a sep command line tab (still within the project folder), run: $ npm start
   * If there are any errors, make sure you've installed all the proper packages using: $ npm install
 
+## Project Roles
+
 * Alex - Server/Database
   * Handled app configuration, url routing, backend logic
   * Implement server setup and data models using Mongo
@@ -39,16 +41,9 @@ Users will register for our service. They will register items they own and care 
   * Work on server deployment
   * Work on database implementation and indexing
 
-* Nayeem - Security
+* Nayeem - Authentication
   * Authentication done using [Passport](http://www.passportjs.org)
-    * Automatically salts and hashes passwords
-    * Should look into "strategies" for passport (will allow us to implement many of the below features)
-  * "Forgot Password?"
-    * Captcha
-    * Multi-Factor or Third Party Authentication
-  * Find a way to track login attempts 
-  * Track number of times an item is registered, try to match similar items
-  * For important tasks like claiming items, have users reauthenticate
+  * Automatically salts and hashes passwords
 
 * Wei - Front End
   * All html files are in [views](views) directory
