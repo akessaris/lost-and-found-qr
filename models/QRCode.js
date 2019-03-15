@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 require("./Item");
+require("./User");
 
 //Represents QR code
 const QRSchema = new mongoose.Schema({
@@ -8,9 +9,16 @@ const QRSchema = new mongoose.Schema({
     type: String
   },
   //which item (if any), has this been assigned to
-  assigned: {
+  item_assigned: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Item' // a reference to a Item object,
+    ref: 'Item', // a reference to a Item object
+    default: undefined
+  },
+  //which user (if any), has this been assigned to
+  user_assigned: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User', // a reference to a User object
+    default: undefined
   }
 });
 

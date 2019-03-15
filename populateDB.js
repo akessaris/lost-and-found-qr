@@ -28,11 +28,11 @@ mongoose.connect(dbconf, {useNewUrlParser: true});
 const QRCode = require('qrcode');
 const QRCodeSchema = require("./models/QRCode"); //get QR data model
 const add = 5; //number of qr codes to add;
-const location = path.join("localhost/5000", "found-item"); //website path - TODO: change to current site
+const location = path.join("localhost/5000", "found-item", uuidv4()); //website path - TODO: change to current site
 
 // Generate qr codes
 for (let i = 0; i < add; i++) {
-  QRCode.toDataURL(location + uuidv4())
+  QRCode.toDataURL(location)
     .then(url => {
       const qr_code = new QRCodeSchema ({qrCode: url});
       qr_code.save()

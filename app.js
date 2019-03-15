@@ -20,15 +20,6 @@ const User = require('./models/User');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-//Logger
-app.use((req, res, next) => {
-  console.log("\n" + req.method, req.path, '\n=====\n','req.query: ', req.query, '\n req.body: ', req.body, '\n');
-  if (req.user) {
-    console.log("USER: " + req.user);
-  }
-  next();
-});
-
 //Session management
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
@@ -81,6 +72,15 @@ passport.deserializeUser(function(userId, done) {
   User.findById(userId, (err, user) => done(err, user));
 });
 
+//Logger
+app.use((req, res, next) => {
+  console.log("\n" + req.method, req.path, '\n=====\n','req.query: ', req.query, '\n req.body: ', req.body, '\n');
+  if (req.user) {
+    console.log("USER: " + req.user);
+  }
+  next();
+});
+
 //Serve static files
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', index);
@@ -104,4 +104,6 @@ app.use(function(err, req, res) {
   res.render('error');
 });
 
-app.listen(port);
+app.listen(port, () => {
+  console.log("Listening on port " + port);
+});
