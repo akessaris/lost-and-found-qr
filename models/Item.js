@@ -13,5 +13,5 @@ const ItemSchema = new mongoose.Schema({
   qrCode: {type: String} //QR Code
 });
 
-//Export Game and user model
+//Export Item model
 module.exports = mongoose.model('Item', ItemSchema);

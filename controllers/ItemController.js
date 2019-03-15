@@ -2,10 +2,9 @@ const mongoose = require("mongoose");
 const passport = require("passport");
 const User = require("../models/User");
 const Item = require("../models/Item");
+const QRCode = require('qrcode');
 
 const itemController = {};
-
-const QRCode = require('qrcode')
 
 //Display new item page
 itemController.newItem = function(req, res) {
