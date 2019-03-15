@@ -20,6 +20,15 @@ const User = require('./models/User');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
+//Logger
+app.use((req, res, next) => {
+  console.log("\n" + req.method, req.path, '\n=====\n','req.query: ', req.query, '\n req.body: ', req.body, '\n');
+  if (req.user) {
+    console.log("USER: " + req.user);
+  }
+  next();
+});
+
 //Session management
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
@@ -77,20 +86,22 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', index);
 app.use('/users', users);
 
-//Logger
-app.use( (req, res, next) => {
-  console.log("\n" + req.method, req.path, '\n=====\n','req.query: ', req.query, '\n req.body: ', req.body, '\n');
-  if (req.user) {
-    console.log("USER: " + req.user);
-  }
-  next();
+// catch 404 and forward to error handler
+app.use(function(req, res, next) {
+  const err = new Error('Not Found');
+  err.status = 404;
+  next(err);
 });
 
-// catch 404 and forward to error handler
-// app.use(function(req, res, next) {
-//   const err = new Error('Not Found');
-//   err.status = 404;
-//   next(err);
-// });
+// error handler
+app.use(function(err, req, res) {
+  // set locals, only providing error in development
+  res.locals.message = err.message;
+  res.locals.error = req.app.get('env') === 'development' ? err : {};
+
+  // render the error page
+  res.status(err.status || 500);
+  res.render('error');
+});
 
 app.listen(port);
